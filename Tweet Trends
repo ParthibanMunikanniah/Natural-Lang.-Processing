@@ -1,0 +1,41 @@
+#Register API
+#print the Auth. key
+api_key <- '******'
+api_secret <- '*******'
+access_token <- '*******'
+acccess_token_secret <- '*******'
+
+#Loading the library
+install.packages("twitteR")
+library('twitteR')
+setup_twitter_oauth(api_key, api_secret, access_token, acccess_token_secret)
+
+#Getting Tweets about a product 
+tweets <- searchTwitter('$apple', n=10, lang = 'en')
+tweets
+tweetsdf <- twListToDF(tweets)
+head(tweetsdf)
+
+#Trends
+trend <- availableTrendLocations()
+head(trend)
+
+#Trends in Specific Locations
+world <- getTrends(2295424)
+dublin <- getTrends(560743)
+india <- getTrends(23424848)
+t <- getUser('narendramodi')
+t
+#Analysing Indian PM Twitter Account
+modidf <- userTimeline(t, n=100)
+Nmodidf <- modidf
+as.data.frame(Nmodidf)
+as.data.frame(Nmodidf, optional = TRUE)
+namodf <- twListToDF(modidf)
+write.csv(namodf, file = 'Modi.csv', row.names = F)
+
+#Twitter user's opinions about Brexit
+British <- twitteR::searchTwitter('$brexit', n = 100, lang = 'eng')
+hash <- twitteR::searchTwitter("#rstats",n =12,lang ="en",since = '2018-01-01')
+HT <- searchTwitter('#brexit', n = 100, lang = 'eng', since= 2018-10-01)
+write.csv(tweetsdf, file = 'Brexit.csv', row.names = F)
