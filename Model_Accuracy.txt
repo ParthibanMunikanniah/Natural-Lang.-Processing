@@ -1,0 +1,81 @@
+
+
+
+
+
+
+> library(gmodels)
+> CrossTable(sms_test_pred, sms_test_labels, 
++            prop.chisq = FALSE, prop.t = FALSE,
++            dnn = c('predicted', 'actual'))
+
+ 
+   Cell Contents
+|-------------------------|
+|                       N |
+|           N / Row Total |
+|           N / Col Total |
+|-------------------------|
+
+ 
+Total Observations in Table:  1390 
+
+ 
+             | actual 
+   predicted |       ham |      spam | Row Total | 
+-------------|-----------|-----------|-----------|
+         ham |      1201 |        25 |      1226 | 
+             |     0.980 |     0.020 |     0.882 | 
+             |     0.993 |     0.139 |           | 
+-------------|-----------|-----------|-----------|
+        spam |         9 |       155 |       164 | 
+             |     0.055 |     0.945 |     0.118 | 
+             |     0.007 |     0.861 |           | 
+-------------|-----------|-----------|-----------|
+Column Total |      1210 |       180 |      1390 | 
+             |     0.871 |     0.129 |           | 
+-------------|-----------|-----------|-----------|
+
+ 
+> #Improving Model Performance
+> sms_classifier2 <- naiveBayes(sms_train, sms_train_labels, laplace = 1)
+> sms_test_pred2 <- predict(sms_classifier2, sms_test)
+> CrossTable(sms_test_pred2, sms_test_labels,
++ 
+
+> CrossTable(sms_test_pred2, sms_test_labels,
++ dnn = c('predicted', 'actual')
+
+
+> CrossTable(sms_test_pred2, sms_test_labels, 
++            prop.chisq = FALSE, prop.t = FALSE,
++            dnn = c('predicted', 'actual'))
+
+ 
+   Cell Contents
+|-------------------------|
+|                       N |
+|           N / Row Total |
+|           N / Col Total |
+|-------------------------|
+
+ 
+Total Observations in Table:  1390 
+
+ 
+             | actual 
+   predicted |       ham |      spam | Row Total | 
+-------------|-----------|-----------|-----------|
+         ham |      1203 |        28 |      1231 | 
+             |     0.977 |     0.023 |     0.886 | 
+             |     0.994 |     0.156 |           | 
+-------------|-----------|-----------|-----------|
+        spam |         7 |       152 |       159 | 
+             |     0.044 |     0.956 |     0.114 | 
+             |     0.006 |     0.844 |           | 
+-------------|-----------|-----------|-----------|
+Column Total |      1210 |       180 |      1390 | 
+             |     0.871 |     0.129 |           | 
+-------------|-----------|-----------|-----------|
+
+ 
